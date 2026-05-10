@@ -1,0 +1,13 @@
+Flask>=3.1.0
+Flask-SQLAlchemy>=3.1.1
+Flask-Login>=0.6.3
+Flask-SocketIO>=5.6.1
+Flask-Cors>=6.0.2
+psycopg2-binary>=2.9.12
+pandas>=2.0.0
+numpy>=1.26.0
+eventlet>=0.41.0
+Werkzeug>=3.1.0
+python-socketio>=5.16.1
+python-engineio>=4.13.1
+SQLAlchemy>=2.0.0
