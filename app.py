@@ -10,15 +10,14 @@ from analytics import calculate_task_analytics
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'smart-task-manager-secret-key'
-# Database Configuration
-# Set USE_POSTGRES=True to use PostgreSQL, otherwise SQLite will be used for convenience.
-if os.environ.get('USE_POSTGRES') == 'True':
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql://postgres:postgres@localhost/task_db')
-    print("Using PostgreSQL database.")
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///task_db.sqlite'
-    print("Using SQLite database (default).")
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'smart-task-manager-secret-key')
+# Database Configuration: use DATABASE_URL if set (Render), otherwise SQLite
+database_url = os.environ.get('DATABASE_URL', 'sqlite:///task_db.sqlite')
+# Render PostgreSQL URLs start with 'postgres://' but SQLAlchemy needs 'postgresql://'
+if database_url.startswith('postgres://'):
+    database_url = database_url.replace('postgres://', 'postgresql://', 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+print(f"Using database: {'PostgreSQL' if 'postgresql' in database_url else 'SQLite'}")
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
