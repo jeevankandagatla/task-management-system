@@ -6,8 +6,7 @@ Flask-Cors>=6.0.2
 psycopg2-binary>=2.9.12
 pandas>=2.0.0
 numpy>=1.26.0
-gevent>=23.9.1
-gevent-websocket>=0.10.1
+
 Werkzeug>=3.1.0
 python-socketio>=5.16.1
 python-engineio>=4.13.1

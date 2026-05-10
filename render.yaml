@@ -3,7 +3,7 @@ services:
     name: task-management-system
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --worker-class gevent -w 1 app:app
+    startCommand: gunicorn --threads 4 -w 1 app:app
     envVars:
       - key: USE_POSTGRES
         value: "True"
